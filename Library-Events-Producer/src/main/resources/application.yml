@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: local
+---
+server:
+  port: 8081
+spring:
+  application:
+    name: library-events-producer
+  datasource:
+    url: jdbc:h2:mem:libdb
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  config:
+    activate:
+      on-profile: local
