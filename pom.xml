@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Library-Events-Producer</module>
+        <module>Library-Events-Consumer</module>
     </modules>
 
     <properties>

@@ -17,7 +17,17 @@ public class LibraryEventServiceImpl implements LibraryEventService {
     private final LibraryEventProducer libraryEventProducer;
 
     @Override
-    public void postLibraryEvent(LibraryEvent libraryEvent) throws JsonProcessingException {
-        libraryEventProducer.sendLibraryEvent(libraryEvent);
+    public void postLibraryEventAsync(LibraryEvent libraryEvent) throws JsonProcessingException {
+        libraryEventProducer.sendLibraryEventAsync(libraryEvent);
+    }
+
+    @Override
+    public void postLibraryEventSync(LibraryEvent libraryEvent) throws JsonProcessingException {
+        libraryEventProducer.sendLibraryEventSync(libraryEvent);
+    }
+
+    @Override
+    public void sendEventAsync_Approach2(LibraryEvent libraryEvent) throws JsonProcessingException {
+        libraryEventProducer.sendEventAsync_Approach2(libraryEvent);
     }
 }
