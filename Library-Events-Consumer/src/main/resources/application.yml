@@ -7,10 +7,20 @@ server:
 spring:
   application:
     name: library-events-consumer
-  profiles: local
   kafka:
     consumer:
       bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: library-events-group
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:libdb
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
