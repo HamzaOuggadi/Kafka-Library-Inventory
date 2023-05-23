@@ -10,8 +10,9 @@ import net.hamzaouggadi.enums.EventType;
 @AllArgsConstructor
 @Builder
 public class LibraryEvent {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long eventId;
+    @Enumerated(value = EnumType.STRING)
     private EventType eventType;
     @OneToOne(mappedBy = "libraryEvent", cascade = CascadeType.ALL)
     @ToString.Exclude

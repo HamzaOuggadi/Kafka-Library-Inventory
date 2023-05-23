@@ -1,5 +1,7 @@
 package net.hamzaouggadi.domain;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +15,7 @@ import net.hamzaouggadi.enums.EventType;
 @Builder
 public class LibraryEvent {
     private Long eventId;
+    @Enumerated(value = EnumType.STRING)
     private EventType eventType;
     private Book book;
 }
