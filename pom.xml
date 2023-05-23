@@ -20,12 +20,13 @@
         <spring-boot-starter-web.version>3.0.6</spring-boot-starter-web.version>
         <lombok.version>1.18.26</lombok.version>
         <h2.version>2.1.214</h2.version>
-        <spring-data-jpa.version>3.0.5</spring-data-jpa.version>
         <spring-kafka.version>3.0.6</spring-kafka.version>
         <spring-boot-starter.version>3.0.6</spring-boot-starter.version>
         <spring-boot-starter-test.version>3.0.6</spring-boot-starter-test.version>
         <spring-boot-dependencies.version>3.0.6</spring-boot-dependencies.version>
         <java.version>17</java.version>
+        <spring-kafka-test.version>3.0.7</spring-kafka-test.version>
+        <spring-boot-starter-data-jpa.version>3.0.6</spring-boot-starter-data-jpa.version>
     </properties>
 
     <dependencyManagement>
@@ -38,9 +39,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>${spring-data-jpa.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot-starter-data-jpa.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -60,6 +61,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot-starter-test.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka-test -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <version>${spring-kafka-test.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

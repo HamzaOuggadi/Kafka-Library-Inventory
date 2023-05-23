@@ -17,10 +17,15 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:h2:mem:libdb
+    url: jdbc:h2:mem:libdb2
     driver-class-name: org.h2.Driver
+    username: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    database: h2
   h2:
     console:
       enabled: true
