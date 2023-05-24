@@ -13,8 +13,10 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.util.backoff.FixedBackOff;
 
 import javax.management.PersistentMBean;
 import java.util.HashMap;
@@ -25,6 +27,12 @@ import java.util.Objects;
 @EnableKafka
 public class LibraryEventConsumerConfig {
 
+
+    public DefaultErrorHandler errorHandler() {
+        var fixedBackOff = new FixedBackOff(1000L, 3);
+        return new DefaultErrorHandler(fixedBackOff);
+    }
+
     @Bean
     @ConditionalOnMissingBean(name = "kafkaListenerContainerFactory")
     ConcurrentKafkaListenerContainerFactory<?,?> kafkaListenerContainerFactory(
@@ -33,6 +41,7 @@ public class LibraryEventConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<Object, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         configurer.configure(factory, kafkaConsumerFactory);
         factory.setConcurrency(3);
+        factory.setCommonErrorHandler(errorHandler());
 /*
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
 */
